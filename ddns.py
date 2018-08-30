@@ -1,9 +1,9 @@
 from pycfdns import CloudflareUpdater
 cfupdate = CloudflareUpdater()
-zone = 'zone'
-email = 'email'
-key = 'token'
-records = [subdomains]
+zone = '_zone'
+email = '_email'
+key = '_token'
+records = [_subdomains]
 
 headers = cfupdate.set_header(email, key)
 zoneid = cfupdate.get_zoneID(headers, zone)
