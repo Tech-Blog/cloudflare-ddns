@@ -1,6 +1,6 @@
 sudo apt update
 apt install python-pip --yes
-pip install pycfdns
+pip install pycfdns requests
 
 echo Enter your cloudflare account email
 read -p 'Email Address: ' usermail
