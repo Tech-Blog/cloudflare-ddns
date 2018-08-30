@@ -25,7 +25,7 @@ class CloudflareUpdater:
 
     def get_zoneID(self, headers, zone):
         """Get the zone id for the zone."""
-        zoneIDurl = 'https://api.cloudflare.com/client/v4/zones' + '?name=' + zone
+        zoneIDurl = self.BASE_URL + '?name=' + zone
         zoneIDrequest = requests.get(zoneIDurl, headers=headers)
         zoneID = zoneIDrequest.json()['result'][0]['id']
         return zoneID
@@ -34,7 +34,7 @@ class CloudflareUpdater:
         """Get the information of the records."""
         if 'None' in records: #If ['None'] in record argument, query all.
             recordQueryEnpoint = '/' + zoneID + '/dns_records&per_page=100'
-            recordUrl = 'https://api.cloudflare.com/client/v4/zones' + recordQueryEnpoint
+            recordUrl = self.BASE_URL + recordQueryEnpoint
             recordRequest = requests.get(recordUrl, headers=headers)
             recordResponse = recordRequest.json()['result']
             dev = []
@@ -51,7 +51,7 @@ class CloudflareUpdater:
             else:
                 recordFullname = record + '.' + zone
             recordQuery = '/' + zoneID + '/dns_records?name=' + recordFullname
-            recordUrl = 'https://api.cloudflare.com/client/v4/zones' + recordQuery
+            recordUrl = self.BASE_URL + recordQuery
             recordInfoRequest = requests.get(recordUrl, headers=headers)
             recordInfoResponse = recordInfoRequest.json()['result'][0]
             recordID = recordInfoResponse['id']
@@ -68,13 +68,13 @@ class CloudflareUpdater:
 
     def update_records(self, headers, zoneID, updateRecords):
         """Update DNS records."""
-        IP = requests.get('http://ipinfo.io/ip').text.rstrip()
+        IP = requests.get(self.GET_EXT_IP_URL).text.rstrip()
         message = True
         errorsRecords = []
         sucessRecords = []
         for record in updateRecords:
             updateEndpoint = '/' + zoneID + '/dns_records/' + record[0]
-            updateUrl = 'https://api.cloudflare.com/client/v4/zones' + updateEndpoint
+            updateUrl = self.BASE_URL + updateEndpoint
             data = json.dumps({
                 'id': zoneID,
                 'type': record[2],
