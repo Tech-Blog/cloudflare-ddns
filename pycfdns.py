@@ -9,7 +9,7 @@ import requests
 class CloudflareUpdater:
     """This class is used to update Cloudflare DNS records."""
     BASE_URL = 'https://api.cloudflare.com/client/v4/zones'
-    GET_EXT_IP_URL = 'https://api.ipify.org'
+    GET_EXT_IP_URL = 'http://ipinfo.io/ip'
 
     def __init__(self):
         """Initialize"""
@@ -68,7 +68,7 @@ class CloudflareUpdater:
 
     def update_records(self, headers, zoneID, updateRecords):
         """Update DNS records."""
-        IP = requests.get(self.GET_EXT_IP_URL).text
+        IP = requests.get(GET_EXT_IP_URL).text.rstrip()
         message = True
         errorsRecords = []
         sucessRecords = []
