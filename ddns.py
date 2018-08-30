@@ -1,8 +1,8 @@
 from pycfdns import CloudflareUpdater
 cfupdate = CloudflareUpdater()
-zone = '[zone]'
-email = '[email]'
-key = '[token]'
+zone = 'zone'
+email = 'email'
+key = 'token'
 records = [records]
 
 headers = cfupdate.set_header(email, key)
