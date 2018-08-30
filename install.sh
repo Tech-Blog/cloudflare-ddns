@@ -10,11 +10,8 @@ echo Enter your Domain Name
 read -p 'Domain Name: ' userdomain
 echo Enter records to update
 read -p 'records: ' userrecords
-echo Thankyou $uservar we now have your login details $passvar
-
-while read a ; do echo ${a//_token/$userapi} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
-while read a ; do echo ${a//_email/$usermail} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
-while read a ; do echo ${a//_zone/$userdomain} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
-while read a ; do echo ${a//_subdomains/$userrecords} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
-
+while read a ; do echo ${a//_token_/$userapi} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
+while read a ; do echo ${a//_email_/$usermail} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
+while read a ; do echo ${a//_zone_/$userdomain} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
+while read a ; do echo ${a//_subdomains_/$userrecords} ; done < /opt/ddns/ddns.py > /opt/ddns/ddns.py.t ; mv /opt/ddns/ddns.py{.t,}
 rm install.sh
