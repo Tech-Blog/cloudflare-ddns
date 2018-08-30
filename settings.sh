@@ -10,7 +10,7 @@ echo you can use multiple records like this: 'a','b','c'
 read -p 'records: ' userrecords
 echo Thankyou $uservar we now have your login details $passvar
 
-sed -i -e 's/abc/XYZ/g' /opt/ddns/ddns.py
-sed -i -e 's/abc/XYZ/g' /opt/ddns/ddns.py
-sed -i -e 's/abc/XYZ/g' /opt/ddns/ddns.py
-sed -i -e 's/abc/XYZ/g' /opt/ddns/ddns.py
+sed -i -e 's/[token]/$userapi/g' /opt/ddns/ddns.py
+sed -i -e 's/[email]/$usermail/g' /opt/ddns/ddns.py
+sed -i -e 's/[zone]/$userdomain/g' /opt/ddns/ddns.py
+sed -i -e 's/[records]/[$userrecords]/g' /opt/ddns/ddns.py
