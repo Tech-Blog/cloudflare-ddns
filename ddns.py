@@ -3,7 +3,7 @@ cfupdate = CloudflareUpdater()
 zone = 'zone'
 email = 'email'
 key = 'token'
-records = [records]
+records = [subdomains]
 
 headers = cfupdate.set_header(email, key)
 zoneid = cfupdate.get_zoneID(headers, zone)
